@@ -1,1 +1,8 @@
-<ng-content></ng-content>
+<div class="remoteScreen" *ngIf="screen.visible">
+  <app-title [title]="screen.name"></app-title>
+  <div>
+    <ng-container *ngFor="let widget of screen.widgets">
+      <app-button *ngIf="widget.visible" [widget]="widget"></app-button>
+    </ng-container>
+  </div>
+</div>

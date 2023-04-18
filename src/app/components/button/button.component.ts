@@ -1,21 +1,26 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MqttService} from "ngx-mqtt";
+import {WidgetModel} from "../../models/widget.model";
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent {
-  @Input() public title:string = ""
-  @Input() public topic:string = ""
-  @Input() public data:any = null
+export class ButtonComponent implements OnInit {
+  @Input() public widget:WidgetModel = new WidgetModel()
 
-  constructor(private mqttService: MqttService) {
+  constructor(
+    private mqttService: MqttService
+  ) {}
+
+  ngOnInit() {
   }
 
-  sendMQTT(topic:string, data:any) {
-    this.mqttService.unsafePublish(topic,JSON.stringify(data));
+  andAction() {
+    this.widget.actors.forEach((actor:any) => {
+      this.mqttService.unsafePublish(actor.topic,actor.payload);
+    })
   }
 
 }

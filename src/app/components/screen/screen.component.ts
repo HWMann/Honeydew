@@ -1,21 +1,26 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MqttService} from "ngx-mqtt";
+import {ApiService} from "../../services/api.service";
+import {ScreenModel} from "../../models/screen.model";
 
 @Component({
   selector: 'app-screen',
   templateUrl: './screen.component.html',
   styleUrls: ['./screen.component.scss']
 })
-export class ScreenComponent {
-  @Input() public title:string = "a screen title"
-  @Input() public id:string = "screen_id"
-  public visibleId:string = "main"
+export class ScreenComponent implements OnInit{
+  @Input() public screen:ScreenModel = new ScreenModel()
 
-  constructor(private mqttService: MqttService) {
+  constructor(
+    private mqttService: MqttService,
+  ) {
+  }
+
+  ngOnInit() {
+    console.log(this.screen);
   }
 
   machma():void {
-    console.log("jo!");
     this.mqttService.unsafePublish("amarsch", JSON.stringify({"stat" : 2}), {qos: 1, retain: true});
   }
 }

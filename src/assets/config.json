@@ -1,0 +1,8 @@
+{
+  "apiURL": "http://rest.local",
+  "sensorTypes": [
+    {"label": "unknown", "value": null},
+    {"label": "button", "value": "BUT"},
+    {"label": "switch", "value": "SWI"}
+  ]
+}
