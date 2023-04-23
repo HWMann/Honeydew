@@ -1,8 +1,9 @@
 import {ActorModel} from "./actor.model";
+import {ActionModel} from "./action.model";
 
 export class WidgetModel {
   id: number = 0
   name: string | null = null
-  actors: ActorModel[] = []
+  actions: ActionModel[] = []
   visible: boolean = false
 }
