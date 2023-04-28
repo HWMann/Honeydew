@@ -30,5 +30,4 @@ export class ButtonComponent implements OnInit {
       console.log(action)
     })
   }
-
 }
