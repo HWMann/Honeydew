@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MqttService} from "ngx-mqtt";
-import {ApiService} from "../../services/api.service";
 import {ScreenModel} from "../../models/screen.model";
 
 @Component({
@@ -17,10 +16,6 @@ export class ScreenComponent implements OnInit{
   }
 
   ngOnInit() {
-    console.log(this.screen);
   }
 
-  machma():void {
-    this.mqttService.unsafePublish("amarsch", JSON.stringify({"stat" : 2}), {qos: 1, retain: true});
-  }
 }

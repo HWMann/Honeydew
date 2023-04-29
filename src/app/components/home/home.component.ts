@@ -12,6 +12,7 @@ import {Mqtt} from "../../services/mqtt.service";
 export class HomeComponent implements OnInit, OnDestroy {
   public screens:ScreenModel[] = []
   private subs:Subscription[] = []
+  public currentScreen:number = 0
 
   constructor(
     private api:ApiService,
@@ -38,4 +39,17 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.screens=screens
     })
   }
+
+  onSwipeLeft($event:any):void {
+    this.currentScreen--;
+    if(this.currentScreen<0) this.currentScreen=0
+    console.log(this.currentScreen)
+  }
+
+  onSwipeRight($event:any):void {
+    this.currentScreen++;
+    if(this.currentScreen>this.screens.length-1) this.currentScreen=2
+    console.log(this.currentScreen)
+  }
+
 }
